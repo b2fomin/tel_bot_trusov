@@ -10,10 +10,10 @@ def get_currency_rate():
     response = requests.get(url)
     
     # Создаем объект BeautifulSoup для парсинга HTML-разметки
-    soup = BeautifulSoup(response.text, "html5lib")
+    soup = BeautifulSoup(response.text, "html.parser")
     
     # Получаем элемент с курсом валюты
     result = soup.find("div", class_="BNeawe iBp4i AP7Wnd").get_text()
     
     # Возвращаем курс валюты как число
-    return float(result.replace(",", "."))
+    return float(result.replace(",", ".")[:5])
